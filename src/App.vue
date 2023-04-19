@@ -1,47 +1,49 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <div class="m-4 p-4 inline-flex flex-col border rounded-lg shadow-sm border-gray-200 bg-white">
+        <form>
+            <form-input
+                label="Firstname"
+                :input-component="FormInputText"
+                v-model="textValue"
+            ></form-input>
+            <form-input
+                label="Firstname"
+                :input-component="FormInputSelect"
+                v-model="selectValue"
+            >
+                <option value="option-1">Option 1</option>
+                <option value="option-2">Option 2</option>
+                <option value="option-3">Option 3</option>
+            </form-input>
+        </form>
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script lang="ts">
+    import {
+        ref,
+        defineComponent,
+    } from 'vue';
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+    import FormInput from '@/components/FormInput.vue';
+    import FormInputText from '@/components/FormInputText.vue';
+    import FormInputSelect from '@/components/FormInputSelect.vue';
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+    export default defineComponent({
+        name: 'app',
+        components: {
+            FormInput,
+        },
+        setup() {
+            const textValue = ref('value');
+            const selectValue = ref('option-2');
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+            return {
+                textValue,
+                selectValue,
+                FormInputText,
+                FormInputSelect,
+            };
+        },
+    });
+</script>
