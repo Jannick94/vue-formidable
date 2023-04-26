@@ -3,12 +3,14 @@
         type="text"
         class="py-2 px-3 rounded-lg border"
         :value="modelValue"
-        @input="updateModelValue($event.target.value)"
+        @input="updateModelValue(($event.target as HTMLInputElement).value)"
     >
 </template>
 
 <script lang="ts">
     import { inject } from 'vue';
+
+    import { fieldInjectionKey, type FieldInject } from '@/types';
 
     export default {
         name: 'form-input-text',
@@ -16,7 +18,7 @@
             const {
                 modelValue,
                 updateModelValue,
-            } = inject('field');
+            } = inject(fieldInjectionKey) as FieldInject;
 
             return {
                 modelValue,

@@ -4,18 +4,22 @@
             <form-input
                 label="Firstname"
                 :input-component="FormInputText"
-                v-model="textValue"
+                v-model="form.text"
             ></form-input>
             <form-input
                 label="Firstname"
                 :input-component="FormInputSelect"
-                v-model="selectValue"
+                v-model="form.select"
             >
                 <option value="option-1">Option 1</option>
                 <option value="option-2">Option 2</option>
                 <option value="option-3">Option 3</option>
             </form-input>
         </form>
+
+        <pre>
+{{ form }}
+        </pre>
     </div>
 </template>
 
@@ -35,12 +39,15 @@
             FormInput,
         },
         setup() {
-            const textValue = ref('value');
-            const selectValue = ref('option-2');
+            const form = ref({
+                text: 'val',
+                select: 'option-2',
+            });
+
+            console.log(FormInputText);
 
             return {
-                textValue,
-                selectValue,
+                form,
                 FormInputText,
                 FormInputSelect,
             };

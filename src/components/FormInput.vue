@@ -16,6 +16,7 @@
 
 <script lang="ts">
     import { provide, ref, toRefs, type Ref } from 'vue';
+    import { fieldInjectionKey } from '@/types';
 
     type ModelValue = string|number|boolean;
     type ValidatorResult = {
@@ -109,7 +110,7 @@
                 validateField(value);
             }
 
-            provide('field', {
+            provide(fieldInjectionKey, {
                 modelValue,
                 updateModelValue,
             });
@@ -117,6 +118,7 @@
             return {
                 updateModelValue,
                 validatorResults,
+                validateField,
             };
         },
     };
